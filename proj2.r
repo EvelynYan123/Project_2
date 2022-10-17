@@ -194,6 +194,6 @@ for(i in 1:iters) {
 }
 mexp
 
-apply(mexp,2,mean)# k=1 - 10的时候length是多少
+apply(mexp,2,mean)# k=1 - 10
 
 
