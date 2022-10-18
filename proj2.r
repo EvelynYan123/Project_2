@@ -1,6 +1,4 @@
-print("hi")
-print('hello")
-# 1 ----------------
+# question1-write a function Pone to estimate the probility of prisoner k succeeding in finding a card has his own number.
 Pone <- function(n, k, strategy, nreps){
   N <- 2*n
   results = rep(0,nreps)
@@ -13,7 +11,6 @@ Pone <- function(n, k, strategy, nreps){
         path = c(prisoner)
         tries = 1
         inBox = boxes[prisoner]
-        
         while(tries < n) { 
           path = c(path, inBox) 			 			
           if(inBox == prisoner) { 				
@@ -23,8 +20,6 @@ Pone <- function(n, k, strategy, nreps){
             inBox = boxes[inBox] 			} 			
           tries = tries+1 		} 		 		
       }
-      
-      
       results[i] = foundIt
     }
   }else if(strategy == 2){
@@ -35,8 +30,7 @@ Pone <- function(n, k, strategy, nreps){
       for(prisoner in prisoners) {
         path = c(sample(1:N,1))
         tries = 1
-        inBox = boxes[path]
-        
+        inBox = boxes[path] 
         while(tries < n) { 
           path = c(path, inBox) 			 			
           if(inBox == prisoner) { 				
@@ -64,20 +58,13 @@ Pone <- function(n, k, strategy, nreps){
         }
       }
       results[i] = foundIt
-      
-    }
-    
+    }  
   }
-  
   prob = sum(results)/(2*n*nreps) 
-  
   return(prob)
 }
 
-Pone(50,50,1, 1000)
-Pone(50,50,2, 1000)
-Pone(50,50,3, 1000)
-
+#question2-write a function Pall to estimate to estimate the probility of 2*n prisioners finding their cards have their own numbers.
 Pall <- function(n, strategy, nreps){
   N <- 2*n
   results = rep(0,nreps)
@@ -89,8 +76,7 @@ Pall <- function(n, strategy, nreps){
       for(prisoner in prisoners) {
         path = c(prisoner)
         tries = 1
-        inBox = boxes[prisoner]
-        
+        inBox = boxes[prisoner]  
         while(tries < n) { 
           path = c(path, inBox) 			 			
           if(inBox == prisoner) { 				
@@ -100,8 +86,6 @@ Pall <- function(n, strategy, nreps){
             inBox = boxes[inBox] 			} 			
           tries = tries+1 		} 		 		
       }
-      
-      
       results[i] = foundIt
     }
   }else if(strategy == 2){
@@ -113,7 +97,6 @@ Pall <- function(n, strategy, nreps){
         path = c(sample(1:N,1))
         tries = 1
         inBox = boxes[path]
-        
         while(tries < n) { 
           path = c(path, inBox) 			 			
           if(inBox == prisoner) { 				
@@ -140,19 +123,35 @@ Pall <- function(n, strategy, nreps){
           }
         }
       }
-      results[i] = foundIt
-      
+      results[i] = foundIt 
     }
-    
   }
-  
   prob <- sum(results[which(results == N)])/(2*n*nreps)
   return(prob)
 }
 
-Pall(50,1, 1000)
-Pall(50,2, 1000)
-Pall(50,3, 1000)
+#question3-
+#While n=5,the probability that prisoner 2 finds his own card marked 2, and the probability that all 10 prisoners find their own card, under different strategies.
+#strategy1
+Pone(5,2,1,10000)
+Pall(5,1,10000)
+#strategy2
+Pone(5,2,2,10000)
+Pall(5,2,10000)
+#strategy3
+Pone(5,2,3,10000)
+Pall(5,3,10000)
+#while n=50,the probability that prisoner 50 finds his own card marked 50, and the probability that all 100 prisoners find their own card, under different strategies.
+#strategy1
+Pone(50,50,1,10000)
+Pall(50,1,10000)
+#strategy2
+Pone(50,50,2,10000)
+Pall(50,2,10000)
+#strategy3
+Pone(50,50,3,10000)
+Pall(50,3,10000)
+#question4
 
 # 5----------------------
 n <- 50
