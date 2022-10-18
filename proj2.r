@@ -434,3 +434,35 @@ Pone <- function(n,k,strategy,nerps){
   return(prob)
 }
 
+
+
+dloop <- function(n, nreps){
+  count_0 = rep(0, n*2)
+  
+  for (reps in 1:nreps){
+    count_1 = rep(0, n*2)
+    boxes = sample(n*2,n*2)
+    numbered_boxes <- boxes
+    
+    iteration_num = c()
+    for (k in 1:(2*n)){
+      cycles = c()
+      if ((k %in% iteration_num) == FALSE){
+        cycles = append(cycles, k) 
+        next_box = boxes[k]
+        while (next_box != k){
+          cycles = append(cycles, next_box)
+          next_box =numbered_boxes[next_box]
+        }
+        count_1[length(cycles)]=count_1[length(cycles)]+1
+        iteration_num = append(iteration_num, cycles)
+      }
+    }
+    index_0 = grep(0, count_1)
+    count_0[index_0]=count_0[index_0]+1
+  }
+  prob_0 <- count_0/nreps
+  prob_1 <- 1- prob_0 #probability of an each loop 1:2n at least once
+  return(prob_1)
+}
+dloop(100, 10000)       
