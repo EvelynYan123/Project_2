@@ -356,4 +356,81 @@ Pall(50,2, 1000)
 Pall(50,3, 1000)
 
 
+#function Pone
+#use three functions to define 3 strategies first? We can simplify our probability functions. Some bugs exist, Pone function does not work.
+strategy1 <- function(n,boxes,prisoner) {
+  path <- prisoner
+  for(i in 1:n) {
+    if(i==1) {
+      next.box <- prisoner
+    } else {
+      next.box <- boxes[last.box]
+    }
+    if(boxes[next.box]==i) return(TRUE)
+    last.box <- next.box
+  }
+  return(FALSE) 
+}
+
+strategy2 <- function(n,boxes,prisoner) {
+  path = c(sample(1:2*n,1))
+  for(i in 1:n) {
+    if(i==1) {
+      next.box <- prisoner
+    } else {
+      next.box <- boxes[last.box]
+    }
+    if(boxes[next.box]==i) return(TRUE)
+    last.box <- next.box
+  }
+  return(FALSE) 
+}
+
+strategy3 <- function(n,boxes,prisoner){
+  selected_boxes <- sample(2*n,n)
+  inbox >- boxes[selected_boxes]
+  inbox
+  if (prisoner %in% inbox) return(TRUE)
+  return(FALSE)
+}
+
+strategy_selected <- function(strategy){
+  if (strategy == 1){
+    strategy = strategy1
+  } 
+  else if (strategy == 2){
+    strategy = strategy2
+  }
+  else {
+    strategy = strategy3
+  }
+  return(strategy)
+}
+
+Pone <- function(n,k,strategy,nerps){
+  strategy = strategy_selected(strategy)
+  results = rep(0,nreps)
+  N <- 2*n
+  boxes = sample(1:N,N)
+  prisoners = 1:N
+  foundIt = 0
+  for(i in 1:nreps) {
+    for(prisoner in prisoners) {
+      path = c(prisoner)
+      tries = 1
+      inBox = boxes[prisoner]
+      while(tries < n) { 
+        path = c(path, inBox) 			 			
+        if(inBox == prisoner) { 				
+          foundIt = foundIt + 1 				
+          break; 			} 
+        else { 					
+          inBox = boxes[inBox] 			} 			
+        tries = tries+1 		} 		 		
+    }
+    results[i] = foundIt
+  }
+  prob = sum(results)/(2*n*nreps) 
+  return(prob)
+}
 
