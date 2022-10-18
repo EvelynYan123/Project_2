@@ -151,7 +151,10 @@ Pall(50,2,10000)
 #strategy3
 Pone(50,50,3,10000)
 Pall(50,3,10000)
-#question4
+#question4-some interesting finds
+#according to our example in question 3, we find that in both functions Pone and Pall, the probability relationship of different strategies is P(strategy1) > P(strategy2) > P(strategy3)
+#for a single prisoner, the larger n is, the greater the probility that he can find the corresponding number.
+#The larger n is , the greater the probality that all 2*n prisoners can succeed in finding their number.
 
 # 5----------------------
 n <- 50
