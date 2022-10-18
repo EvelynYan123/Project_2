@@ -1,4 +1,4 @@
-# question1-write a function Pone to estimate the probility of prisoner k succeeding in finding a card has his own number.
+# question1-write a function Pone to estimate the probility of a prisoner succeeding in finding a card has his own number.
 Pone <- function(n, k, strategy, nreps){
   N <- 2*n
   results = rep(0,nreps)
@@ -131,7 +131,7 @@ Pall <- function(n, strategy, nreps){
 }
 
 #question3-
-#While n=5,the probability that prisoner 2 finds his own card marked 2, and the probability that all 10 prisoners find their own card, under different strategies.
+#While n=5,the probability that a prisoner finds his own card when the first box he opened has a card number 2, and the probability that all 10 prisoners find their own card, under different strategies.
 #strategy1
 Pone(5,2,1,10000)
 Pall(5,1,10000)
@@ -141,7 +141,7 @@ Pall(5,2,10000)
 #strategy3
 Pone(5,2,3,10000)
 Pall(5,3,10000)
-#while n=50,the probability that prisoner 50 finds his own card marked 50, and the probability that all 100 prisoners find their own card, under different strategies.
+#while n=50,the probability that a prisoner finds his own card when the first box he opened has a card number 50, and the probability that all 100 prisoners find their own card, under different strategies.
 #strategy1
 Pone(50,50,1,10000)
 Pall(50,1,10000)
