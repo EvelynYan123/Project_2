@@ -462,4 +462,6 @@ l
 
 a <- hist(l, col = 'blue', main = paste("Histogram of Probabilities") ) #displaying histogram of probabilities
 
+prob <- dloop(50, 10000) 
+barplot(prob,ylab = 'probability',col = 'blue')#visualise the probabilities sensibly
      
