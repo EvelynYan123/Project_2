@@ -156,47 +156,6 @@ Pall(50,3,10000)
 #for a single prisoner, the larger n is, the greater the probility that he can find the corresponding number.
 #The larger n is , the greater the probality that all 2*n prisoners can succeed in finding their number.
 
-# 5----------------------
-n <- 50
-N <- 2*n
-# How many times should we run this experiment?
-iters = 10
-results = rep(0,iters) # 10个0
-
-exp <- numeric(N)
-mexp <- matrix(0,nrow=N,ncol = iters)
-# strategy 1
-for(i in 1:iters) {
-  boxes = sample(1:N,N)
-
-  prisoners = 1:N
-  for(prisoner in prisoners) {
-
-    path = c(prisoner)
-    
-    tries = 1
-
-    inBox = boxes[prisoner]
-    
-    while(tries <= N) { 
-      path = c(path, inBox) 			 			
-      if(inBox == prisoner) { 				
-        break; 			} 
-      else { 				
-        inBox = boxes[inBox] 			} 			
-      tries = tries+1 		
-      
-      exp[prisoner] <- tries
-      } 		 		
-    
-  }
-  mexp[,i] <- exp
-
-
-}
-mexp
-
-apply(mexp,2,mean)# k=1 - 10的时候length是多少
 
 
 
