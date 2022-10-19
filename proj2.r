@@ -463,5 +463,5 @@ l
 a <- hist(l, col = 'blue', main = paste("Histogram of Probabilities") ) #displaying histogram of probabilities
 
 prob <- dloop(50, 10000) 
-barplot(prob,ylab = 'probability',col = 'blue')#visualise the probabilities sensibly
-     
+barplot(prob,ylab = 'probability',xlab = 'loop length',col = 'blue',main = 'probability of each loop length from 1 to
+        2n occurring at least once') #visualise the probabilities sensibly
