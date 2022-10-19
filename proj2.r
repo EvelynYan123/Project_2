@@ -457,8 +457,9 @@ dloop <- function(n, nreps){ #creating the function dloop that takes number of b
   prob_1 <- 1- prob_0 #probability of an each loop 1:2n at least once
   return(prob_1)
 }
-dloop(50, 10000) 
-
+l <- dloop(50, 10000) 
+l
 
 a <- hist(l, col = 'blue', main = paste("Histogram of Probabilities") ) #displaying histogram of probabilities
-d_loops)
+
+     
