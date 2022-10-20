@@ -320,6 +320,7 @@ prob <- dloop(50, 10000)
 barplot(prob,ylab = 'probability',xlab = 'loop length',col = 'blue',main = 'probability of each loop length from 1 to
         2n occurring at least once') #displaying histogram of probabilities
 
+1-sum(prob[51:100])
 
 Pall <- function(n, strategy, nreps){# #A function to calculate the individual probability of a prisoner finding his number given number of tries, the prisoner number,the strategy and number of iterations
   N <- 2*n 
