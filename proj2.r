@@ -1,4 +1,79 @@
+Pall <- function(n, strategy, nreps){
+  N <- 2*n
+  results = rep(0,nreps)
+  if(strategy != 3){
+    for(i in 1:nreps) {
+      boxes = sample(1:N,N)
+      prisoners = 1:N
+      foundIt = 0
+      for(prisoner in prisoners) {
+        tries = 1
+        
+        path = c(prisoner)
+        inBox = boxes[prisoner]
+        
+        while(tries <= n) { 
+          path = c(path, inBox) 			 			
+          if(inBox == prisoner) { 				
+            foundIt = foundIt + 1 				
+            break; 			} 
+          else { 					
+            inBox = boxes[inBox] 			} 			
+          tries = tries+1 		} 		 		
+      }
+      
+      
+      results[i] = foundIt
+    }
+  }else if(strategy == 2){
+    for(i in 1:nreps) {
+      boxes = sample(1:N,N)
+      prisoners = 1:N
+      foundIt = 0
+      for(prisoner in prisoners) {
+        path = c(sample(1:N,1))
+        tries = 1
+        inBox = boxes[path]
+        
+        while(tries < n) { 
+          path = c(path, inBox) 			 			
+          if(inBox == prisoner) { 				
+            foundIt = foundIt + 1 				
+            break; 			} 
+          else { 			
+            inBox = boxes[inBox] 			} 			
+          tries = tries+1 		} 		 		
+      }
+      results[i] = foundIt
+    }
+  }else if(strategy == 3){
+    for(i in 1:nreps) {
+      prisoners <- 1:N
+      temp <- numeric(N)
+      
+      for(j in prisoners){
+        inboxes <- sample(1:N,N)[1:n]
+        temp[j] <- match(j,inboxes)
+      }
+      temp <- na.omit(temp)
+      results[i] <- N-length(attributes(temp)$na.action)
+    }
+    
+    
+  }
+  
+  prob = length(which(results==2*n))/nreps
+  
+  return(prob)
+}
 
+Pall(50,1,1000)
+Pall(50,2,1000)
+Pall(50,3,1000)
+
+Pall(5,1,1000)
+Pall(5,2,1000)
+Pall(5,3,1000)
 
    ty of a single prisoner succeeding in finding their number
   return(prob)
