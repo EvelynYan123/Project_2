@@ -5,6 +5,7 @@
 
 start <- Sys.time()#check running time
 
+# Question 1
 Pone <- function(n,k,strategy, nreps){ #A function to calculate the probability that one prisoner finds his number 
   #given n- number of tries(max number of boxes he can open), k-prisoner's number, the strategy and number of iterations
   N <- 2*n 
@@ -51,7 +52,7 @@ Pone <- function(n,k,strategy, nreps){ #A function to calculate the probability 
 
 
 
-
+# Question 2
 Pall <- function(n, strategy, nreps){#A function to calculate the probability of all prisoners finding their numbers given #given n -number of tries(max of boxes they can open), the strategy and number of iterations
   N <- 2*n #number of prsioners
   results = rep(0,nreps) #initialising results to 0
@@ -108,7 +109,7 @@ Pall <- function(n, strategy, nreps){#A function to calculate the probability of
 }
 
 
-
+# Question 3
 success_prob <- function(n,nreps){ 
   for (strategy in 1:3){ #loop over the strategies
     cat('In strategy', strategy,':',fill = TRUE)
@@ -138,10 +139,12 @@ success_prob(50,10000)# In case of n=50, we have:
 # P(a single prisoner's success)= 1e-04
 # P(all prisoners' success)= 0
 
+# Question 4
 # In case of n=50, in strategy 1, the probability of all prisoners getting free is roughly 31%, but in other two strategies, the probabilities that they will be free are 0.
 # The probabilities of strategy 3 are almost 0 for all conditions.
+# In case of smaller n, we have a lower probability when using strategy 2 than that of strategy 3 for all prisoners finding their numbers. 
 
-
+# Question 5
 dloop <- function(n, nreps){ #creating the function dloop that takes number of boxes and number of iterations
   count_0 = rep(0, n*2) # initialise vector of length 2*n
   
@@ -173,6 +176,9 @@ dloop <- function(n, nreps){ #creating the function dloop that takes number of b
   return(prob_1)
 }
 
+
+
+# Question 6
 prob <- dloop(50, 10000) 
 barplot(prob,ylab = 'probability',xlab = 'loop length',col = 'blue',main = 'probability of each loop length from 1 to
         2n occurring at least once') #displaying barplot of probabilities
