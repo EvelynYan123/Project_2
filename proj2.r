@@ -312,7 +312,7 @@ Pall <- function(n, strategy, nreps){ #A function to calculate the probability t
       results[i] = foundIt
     }  
   }
-  prob = length(which(results==2*n))/nreps
+  prob <- sum(results[which(results == N)])/(2*n*nreps)
   return(prob)
 }
 
@@ -325,7 +325,6 @@ success_prob <- function(n,nerps){
 }
 success_prob(5,10000)
 success_prob(50,10000)
-
 
 
 dloop <- function(n, nreps){ #creating the function dloop that takes number of boxes and number of iterations
