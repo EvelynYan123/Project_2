@@ -30,7 +30,7 @@ Pall <- function(n, strategy, nreps){
       
       results[i] = foundIt
     }
-  }else if(strategy == 3){
+  }else{
     for(i in 1:nreps) {
       prisoners <- 1:N
       temp <- numeric(N)
@@ -76,6 +76,49 @@ success_prob(5,10000)
 success_prob(50,10000)
 # In strategy 1, the probability of all prisoners get free is 30.63%, but in other two strategies, the probabilities that they will be free are 0.
 
+Pone <- function(n,k,strategy, nreps){ #A function to calculate the probability that all prisoners find their numbers 
+  #given number of tries, the strategy and number of iterations
+  N <- 2*n 
+  results = rep(0,nreps)  #initialise vector of results
+  if(strategy != 3){  #for strategies except strategy 3 (that is, 1 and 2)
+    for(i in 1:nreps) {  #loop over nreps
+      boxes = sample(1:N,N) #sample boxes
+     #we have 2*n prisoners
+      foundIt = 0 #initialise number of prisoners who found their numbers
+      #loop over prisoners
+        tries = 1
+        if(strategy == 1){  #consider a strategy 1
+          path = c(k) #keep track of the path of a prisoner
+          inBox = boxes[k] # prisoner opens a box with his number
+        }else if(strategy == 2){ #consider a strategy 2
+          path = c(sample(1:N,1)) #sample random box  
+          inBox = boxes[path]  #firstly prisoner opens a random box
+        }
+        while(tries <= n) { #prisoners can open at most 50 boxes
+          path = c(path, inBox) 		#keep track of a path	 			
+          if(inBox == k) { 	#check if the number inside of the box coincides with the prisoner's number		
+            foundIt = foundIt + 1   #if yes then update foundIt
+            break; 			} 
+          else { 					
+            inBox = boxes[inBox] 			} #if no, then follow this number in the next box
+          tries = tries+1 		} 		 		#update number of tries
+      
+      results[i] = foundIt  #how many prisoners found their numbers
+    }
+  }else{ #strategy3
+    for(i in 1:nreps) {
+      inboxes <- sample(1:N,N)[1:n]
+      results[i] <- match(k,inboxes)
+      results <- length(results[which(is.na(results)== FALSE)])
+    }
+    
+    
+  }
+  
+  prob = sum(results)/(nreps)
+  
+  return(prob)
+}
 
 
 
