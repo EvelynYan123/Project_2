@@ -70,70 +70,8 @@ Pone <- function(n, k, strategy, nreps){  #A function to calculate the individua
   return(prob)
 }
 
-Pall <- function(n, strategy, nreps){
-  N <- 2*n
-  results = rep(0,nreps)
-  if(strategy == 1){
-    for(i in 1:nreps) {
-      boxes = sample(1:N,N)
-      prisoners = 1:N
-      foundIt = 0
-      for(k in prisoners) {
-        path = c(k)
-        tries = 1
-        inBox = boxes[k]  
-        while(tries < n) { 
-          path = c(path, inBox) 			 			
-          if(inBox == k) { 				
-            foundIt = foundIt + 1 				
-            break; 			} 
-          else { 					
-            inBox = boxes[inBox] 			} 			
-          tries = tries+1 		} 		 		
-      }
-      results[i] = foundIt
-    }
-  }else if(strategy == 2){
-    for(i in 1:nreps) {
-      boxes = sample(1:N,N)
-      prisoners = 1:N
-      foundIt = 0
-      for(k in prisoners) {
-        path = c(sample(1:N,1))
-        tries = 1
-        inBox = boxes[path]
-        while(tries <= n) { 
-          path = c(path, inBox) 			 			
-          if(inBox == k) { 				
-            foundIt = foundIt + 1 				
-            break; 			} 
-          else { 			
-            inBox = boxes[inBox] 			} 			
-          tries = tries+1 		} 		 		
-      }
-      results[i] = foundIt
-    }
-  }else if(strategy == 3){
-    for(i in 1:nreps) {
-      boxes = sample(1:N,N)
-      prisoners = 1:N
-      foundIt = 0
-      for(k in prisoners) {
-        path = c(sample(1:N,n))
-        tries = 1
-        inbox = boxes[path]
-        for(i in  1:n){
-          if(inbox[i] == k){
-            foundIt = foundIt+1
-          }
-        }
-      }
-      results[i] = foundIt 
-    }
-  }
-  prob <- mean(results == N) #probability that all prisoners find their numbers
-  return(prob)
-}
+
+
 
 Pall <- function(n, strategy, nreps){ #A function to calculate the probability that all prisoners find their numbers 
                                       #given number of tries, the strategy and number of iterations
