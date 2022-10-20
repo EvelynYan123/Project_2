@@ -138,121 +138,6 @@ Pall <- function(n, strategy, nreps){
 
 
 
-
-#function Pone
-#use three functions to define 3 strategies first? We can simplify our probability functions. Some bugs exist, Pone function does not work.
-strategy1 <- function(n,boxes,prisoner) {
-  path <- prisoner
-  for(i in 1:n) {
-    if(i==1) {
-      next.box <- prisoner
-    } else {
-      next.box <- boxes[last.box]
-    }
-    if(boxes[next.box]==i) return(TRUE)
-    last.box <- next.box
-  }
-  return(FALSE) 
-}
-
-strategy2 <- function(n,boxes,prisoner) {
-  path = c(sample(1:2*n,1))
-  for(i in 1:n) {
-    if(i==1) {
-      next.box <- prisoner
-    } else {
-      next.box <- boxes[last.box]
-    }
-    if(boxes[next.box]==i) return(TRUE)
-    last.box <- next.box
-  }
-  return(FALSE) 
-}
-
-strategy3 <- function(n,boxes,prisoner){
-  selected_boxes <- sample(2*n,n)
-  inbox >- boxes[selected_boxes]
-  inbox
-  if (prisoner %in% inbox) return(TRUE)
-  return(FALSE)
-}
-
-strategy_selected <- function(strategy){
-  if (strategy == 1){
-    strategy = strategy1
-  } 
-  else if (strategy == 2){
-    strategy = strategy2
-  }
-  else {
-    strategy = strategy3
-  }
-  return(strategy)
-}
-
-Pone <- function(n,k,strategy,nerps){
-  strategy = strategy_selected(strategy)
-  results = rep(0,nreps)
-  N <- 2*n
-  boxes = sample(1:N,N)
-  prisoners = 1:N
-  foundIt = 0
-  for(i in 1:nreps) {
-    for(prisoner in prisoners) {
-      path = c(prisoner)
-      tries = 1
-      inBox = boxes[prisoner]
-      while(tries < n) { 
-        path = c(path, inBox) 			 			
-        if(inBox == prisoner) { 				
-          foundIt = foundIt + 1 				
-          break; 			} 
-        else { 					
-          inBox = boxes[inBox] 			} 			
-        tries = tries+1 		} 		 		
-    }
-    results[i] = foundIt
-  }
-  prob = sum(results)/(2*n*nreps) 
-  return(prob)
-}
-
-
-
-dloop <- function(n, nreps){
-  count_0 = rep(0, n*2)
-  
-  for (reps in 1:nreps){
-    count_1 = rep(0, n*2)
-    boxes = sample(n*2,n*2)
-    numbered_boxes <- boxes
-    
-    iteration_num = c()
-    for (k in 1:(2*n)){
-      cycles = c()
-      if ((k %in% iteration_num) == FALSE){
-        cycles = append(cycles, k) 
-        next_box = boxes[k]
-        while (next_box != k){
-          cycles = append(cycles, next_box)
-          next_box =numbered_boxes[next_box]
-        }
-        count_1[length(cycles)]=count_1[length(cycles)]+1
-        iteration_num = append(iteration_num, cycles)
-      }
-    }
-    index_0 = grep(0, count_1)
-    count_0[index_0]=count_0[index_0]+1
-  }
-  prob_0 <- count_0/nreps
-  prob_1 <- 1- prob_0 #probability of an each loop 1:2n at least once
-  return(prob_1)
-}
-dloop(100, 10000)       
-
-
-
-
 set.seed(1)
 Pone <- function(n, k, strategy, nreps){  #A function to calculate the individual probability of a prisoner finding his number given number of tries, the prisoner number,the strategy and number of iterations
   N <- 2*n #number of prisoners
@@ -430,14 +315,10 @@ dloop <- function(n, nreps){ #creating the function dloop that takes number of b
   prob_1 <- 1- prob_0 #probability of an each loop 1:2n at least once
   return(prob_1)
 }
-l <- dloop(50, 10000) 
-l
-
-a <- hist(l, col = 'blue', main = paste("Histogram of Probabilities") ) #displaying histogram of probabilities
 
 prob <- dloop(50, 10000) 
 barplot(prob,ylab = 'probability',xlab = 'loop length',col = 'blue',main = 'probability of each loop length from 1 to
-        2n occurring at least once') #visualise the probabilities sensibly
+        2n occurring at least once') #displaying histogram of probabilities
 
 
 Pall <- function(n, strategy, nreps){# this one decreases the running time, but not so much:(
