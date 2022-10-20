@@ -440,7 +440,7 @@ barplot(prob,ylab = 'probability',xlab = 'loop length',col = 'blue',main = 'prob
         2n occurring at least once') #visualise the probabilities sensibly
 
 
-Pall <- function(n, k, strategy, nreps){# this one decreases the running time, but not so much:(
+Pall <- function(n, strategy, nreps){# this one decreases the running time, but not so much:(
   N <- 2*n
   results = rep(0,nreps)
   if(strategy != 3){
