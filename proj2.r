@@ -118,6 +118,52 @@ barplot(prob,ylab = 'probability',xlab = 'loop length',col = 'blue',main = 'prob
 1-sum(prob[51:100])
 
 
+Pone <- function(n,k, strategy, nreps){
+  N <- 2*n
+  results = rep(0,nreps)
+  if(strategy != 3){
+    for(i in 1:nreps){
+      boxes = sample(1:N,N)
+      foundIt = 0
+      tries = 1
+      if(strategy == 1){
+      path = c(k)
+      inBox = boxes[k]
+      }else if(strategy == 2){
+      path = c(sample(1:N,1))
+      inBox = boxes[path]
+      }
+      while(tries < n) { 			 			
+        path = c(path, inBox) 			 			
+        if(inBox == k) { 				
+          foundIt = foundIt + 1 				
+          break; 		
+        } else { 				
+          inBox = boxes[inBox] 			} 		
+        tries = tries+1 		} 		 		
+      results[i] = foundIt
+      
+    }
+  }else if(strategy == 3){
+    for(i in 1:nreps) {
+      prisoners <- 1:N
+      temp <- numeric(N)
+      
+      for(j in prisoners){
+        inboxes <- sample(1:N,N)[1:n]
+        temp[j] <- match(j,inboxes)
+      }
+      temp <- na.omit(temp)
+      results[i] <- N-length(attributes(temp)$na.action)
+    }
+    
+    
+  }
+  
+  prob = sum(results)/(2*n)
+  
+  return(prob)
+}
 
 
 
