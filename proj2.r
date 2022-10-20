@@ -158,7 +158,14 @@ barplot(prob,ylab = 'probability',xlab = 'loop length',col = 'blue',main = 'prob
 1-sum(prob[51:100]) #probability that there is no loop length greater than 50 
 
 
+#Since the prisoner starts on the box of their own number they are, on the cycle that contains their card 
 
+#By following the cycle around they will eventually end up at their card.
+
+#The only issue is if prisoners can find their numbers before n boxes are opened.
+#In fact, the maximum cycle length should be less than or equal to 50, and there can only be one cycle in any set that has a cycle greater than fifty and 
+#after calculating the probability we get 0.319
+# about 30 percent of the time, the length of the maximum chains formed will be less than 50 boxes and so all prisoners will be able to find their numbers before they open more than 50 boxes
 
 
 
