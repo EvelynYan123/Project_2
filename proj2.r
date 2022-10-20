@@ -3,8 +3,7 @@
 #Xiaoxian Zhang (s2287323)
 #Xiaolin Yan (s2326461)
 
-# the link:
-
+# the link: https://github.com/EvelynYan123/Project_2.git
 # Contributions: each of us contributed 1/3 of the job.
 
 
