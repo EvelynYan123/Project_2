@@ -1,3 +1,136 @@
+# question1-write a function Pone to estimate the probility of a prisoner succeeding in finding a card has his own number.
+Pone <- function(n, k, strategy, nreps){
+  N <- 2*n
+  results = rep(0,nreps)
+  if(strategy == 1){
+    for(i in 1:nreps) {
+      boxes = sample(1:N,N)
+      prisoners = 1:N
+      foundIt = 0
+      for(prisoner in prisoners) {
+        path = c(prisoner)
+        tries = 1
+        inBox = boxes[prisoner]
+        while(tries < n) { 
+          path = c(path, inBox) 			 			
+          if(inBox == prisoner) { 				
+            foundIt = foundIt + 1 				
+            break; 			} 
+          else { 					
+            inBox = boxes[inBox] 			} 			
+          tries = tries+1 		} 		 		
+      }
+      results[i] = foundIt
+    }
+  }else if(strategy == 2){
+    for(i in 1:nreps) {
+      boxes = sample(1:N,N)
+      prisoners = 1:N
+      foundIt = 0
+      for(prisoner in prisoners) {
+        path = c(sample(1:N,1))
+        tries = 1
+        inBox = boxes[path] 
+        while(tries < n) { 
+          path = c(path, inBox) 			 			
+          if(inBox == prisoner) { 				
+            foundIt = foundIt + 1 				
+            break; 			} 
+          else { 			
+            inBox = boxes[inBox] 			} 			
+          tries = tries+1 		} 		 		
+      }
+      results[i] = foundIt
+    }
+  }else if(strategy == 3){
+    for(i in 1:nreps) {
+      boxes = sample(1:N,N)
+      prisoners = 1:N
+      foundIt = 0
+      for(prisoner in prisoners) {
+        path = c(sample(1:N,n))
+        tries = 1
+        inbox = boxes[path]
+        for(i in  1:n){
+          if(inbox[i] == prisoner){
+            foundIt = foundIt+1
+          }
+        }
+      }
+      results[i] = foundIt
+    }  
+  }
+  prob = sum(results)/(2*n*nreps) 
+  return(prob)
+}
+
+#question2-write a function Pall to estimate to estimate the probility of 2*n prisioners finding their cards have their own numbers.
+Pall <- function(n, strategy, nreps){
+  N <- 2*n
+  results = rep(0,nreps)
+  if(strategy == 1){
+    for(i in 1:nreps) {
+      boxes = sample(1:N,N)
+      prisoners = 1:N
+      foundIt = 0
+      for(prisoner in prisoners) {
+        path = c(prisoner)
+        tries = 1
+        inBox = boxes[prisoner]  
+        while(tries < n) { 
+          path = c(path, inBox) 			 			
+          if(inBox == prisoner) { 				
+            foundIt = foundIt + 1 				
+            break; 			} 
+          else { 					
+            inBox = boxes[inBox] 			} 			
+          tries = tries+1 		} 		 		
+      }
+      results[i] = foundIt
+    }
+  }else if(strategy == 2){
+    for(i in 1:nreps) {
+      boxes = sample(1:N,N)
+      prisoners = 1:N
+      foundIt = 0
+      for(prisoner in prisoners) {
+        path = c(sample(1:N,1))
+        tries = 1
+        inBox = boxes[path]
+        while(tries < n) { 
+          path = c(path, inBox) 			 			
+          if(inBox == prisoner) { 				
+            foundIt = foundIt + 1 				
+            break; 			} 
+          else { 			
+            inBox = boxes[inBox] 			} 			
+          tries = tries+1 		} 		 		
+      }
+      results[i] = foundIt
+    }
+  }else if(strategy == 3){
+    for(i in 1:nreps) {
+      boxes = sample(1:N,N)
+      prisoners = 1:N
+      foundIt = 0
+      for(prisoner in prisoners) {
+        path = c(sample(1:N,n))
+        tries = 1
+        inbox = boxes[path]
+        for(i in  1:n){
+          if(inbox[i] == prisoner){
+            foundIt = foundIt+1
+          }
+        }
+      }
+      results[i] = foundIt 
+    }
+  }
+  prob <- sum(results[which(results == N)])/(2*n*nreps)
+  return(prob)
+}
+
+
 
 set.seed(1)
 Pone <- function(n, k, strategy, nreps){  #A function to calculate the individual probability of a prisoner finding his number given number of tries, the prisoner number,the strategy and number of iterations
@@ -67,6 +200,70 @@ Pone <- function(n, k, strategy, nreps){  #A function to calculate the individua
   return(prob)
 }
 
+Pall <- function(n, strategy, nreps){
+  N <- 2*n
+  results = rep(0,nreps)
+  if(strategy == 1){
+    for(i in 1:nreps) {
+      boxes = sample(1:N,N)
+      prisoners = 1:N
+      foundIt = 0
+      for(k in prisoners) {
+        path = c(k)
+        tries = 1
+        inBox = boxes[k]  
+        while(tries < n) { 
+          path = c(path, inBox) 			 			
+          if(inBox == k) { 				
+            foundIt = foundIt + 1 				
+            break; 			} 
+          else { 					
+            inBox = boxes[inBox] 			} 			
+          tries = tries+1 		} 		 		
+      }
+      results[i] = foundIt
+    }
+  }else if(strategy == 2){
+    for(i in 1:nreps) {
+      boxes = sample(1:N,N)
+      prisoners = 1:N
+      foundIt = 0
+      for(k in prisoners) {
+        path = c(sample(1:N,1))
+        tries = 1
+        inBox = boxes[path]
+        while(tries <= n) { 
+          path = c(path, inBox) 			 			
+          if(inBox == k) { 				
+            foundIt = foundIt + 1 				
+            break; 			} 
+          else { 			
+            inBox = boxes[inBox] 			} 			
+          tries = tries+1 		} 		 		
+      }
+      results[i] = foundIt
+    }
+  }else if(strategy == 3){
+    for(i in 1:nreps) {
+      boxes = sample(1:N,N)
+      prisoners = 1:N
+      foundIt = 0
+      for(k in prisoners) {
+        path = c(sample(1:N,n))
+        tries = 1
+        inbox = boxes[path]
+        for(i in  1:n){
+          if(inbox[i] == k){
+            foundIt = foundIt+1
+          }
+        }
+      }
+      results[i] = foundIt 
+    }
+  }
+  prob <- mean(results == N) #probability that all prisoners find their numbers
+  return(prob)
+}
 
 Pall <- function(n, strategy, nreps){ #A function to calculate the probability that all prisoners find their numbers 
                                       #given number of tries, the strategy and number of iterations
@@ -98,25 +295,17 @@ Pall <- function(n, strategy, nreps){ #A function to calculate the probability t
       results[i] = foundIt  #how many prisoners found their numbers
     }
   }else{ #strategy3
-    for(i in 1:nreps) { #loop over number of iterations
-      boxes = sample(1:N,N) # sample boxes
-      prisoners = 1:N #we have 2*n prisoners
-      foundIt = 0
-      for(prisoner in prisoners) {
-        path = c(sample(1:N,n))
-        tries = 1
-        inbox = boxes[path]
-        for(i in  1:n){
-          if(inbox[i] == prisoner){
-            foundIt = foundIt+1
-          }
-        }
-      }
-      results[i] = foundIt
-    }  
+    for(i in 1:nreps) {
+  prisoners <- 1:N
+  temp <- numeric(N)
+  
+  for(j in prisoners){
+    inboxes <- sample(1:N,N)[1:n]
+    temp[j] <- match(j,inboxes)
   }
-  prob <- sum(results[which(results == N)])/(2*n*nreps)
-  return(prob)
+  temp <- na.omit(temp)
+  results[i] <- N-length(attributes(temp)$na.action)
+}
 }
 
 success_prob <- function(n,nerps){
@@ -128,6 +317,7 @@ success_prob <- function(n,nerps){
 }
 success_prob(5,10000)
 success_prob(50,10000)
+
 
 
 dloop <- function(n, nreps){ #creating the function dloop that takes number of boxes and number of iterations
