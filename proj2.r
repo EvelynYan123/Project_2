@@ -178,7 +178,8 @@ prob <- dloop(50, 10000)
 barplot(prob,ylab = 'probability',xlab = 'loop length',col = 'blue',main = 'probability of each loop length from 1 to
         2n occurring at least once') #displaying barplot of probabilities
 
-1-sum(prob[51:100]) #probability that there is no loop length greater than 50 
+no_loop_length_more_than_50 = 1-sum(prob[51:100])#probability that there is no loop length greater than 50 
+no_loop_length_more_than_50
 
 
 #Since the prisoner starts on the box of their own number they are, on the cycle that contains their card 
