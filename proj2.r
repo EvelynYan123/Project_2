@@ -424,9 +424,22 @@ Pall(50,1,10000)
 #strategy2
 Pone(50,50,2,10000)
 Pall(50,2,10000)
-Pall(50,3,10000)
 #strategy3
 Pone(50,50,3,10000)
+Pall(50,3,10000)
+
+success_prob <- function(n,nerps){
+  for (strategy in 1:3){
+    cat('In strategy', strategy,':',fill = TRUE)
+    cat(' P(a single prisoner success)=', {Pone(n,1,strategy,nerps)},fill = TRUE)
+    cat(' P(all prisoner success)=', {Pall(n,strategy,nerps)},fill = TRUE)
+  }
+}
+success_prob(5,10000)
+success_prob(50,10000)
+
+
+
 dloop <- function(n, nreps){ #creating the function dloop that takes number of boxes and number of iterations
   count_0 = rep(0, n*2) # initialise vector of length 2*n
   
