@@ -124,7 +124,7 @@ dloop <- function(n, nreps){ #creating the function dloop that takes number of b
   for (reps in 1:nreps){ #loop over nreps
     count_1 = rep(0, n*2) #initialise vector counting length of a loop 
     boxes = sample(n*2,n*2) #sample boxes 
-    numbered_boxes <- boxes 
+   
     
     iteration_num = c() #initialising vector of numbers we will perform iterations over
     for (k in 1:(2*n)){ #loop over 2*n boxes 
@@ -134,11 +134,11 @@ dloop <- function(n, nreps){ #creating the function dloop that takes number of b
         next_box = boxes[k] #follow the prisoner's number in next box
         while (next_box != k){ #we append the next boxes to the cycle until in one of the boxes we find the prisoner's number
                                #if we find the number the cycle is closed and we are done
-          cycles = append(cycles, next_box)
-          next_box =numbered_boxes[next_box]
+          cycles = append(cycles, next_box)  #add next box to the cycle
+          next_box =boxes[next_box] 
         }
         count_1[length(cycles)]=count_1[length(cycles)]+1 # count  number of boxes in cycles
-        iteration_num = append(iteration_num, cycles)
+        iteration_num = append(iteration_num, cycles) 
       }
     }
     index_0 = grep(0, count_1)
