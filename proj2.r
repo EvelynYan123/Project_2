@@ -130,27 +130,7 @@ Pall <- function(n, strategy, nreps){
   return(prob)
 }
 
-#question3-
-#While n=5,the probability that a prisoner finds his own card when the first box he opened has a card number 2, and the probability that all 10 prisoners find their own card, under different strategies.
-#strategy1
-Pone(5,2,1,10000)
-Pall(5,1,10000)
-#strategy2
-Pone(5,2,2,10000)
-Pall(5,2,10000)
-#strategy3
-Pone(5,2,3,10000)
-Pall(5,3,10000)
-#while n=50,the probability that a prisoner finds his own card when the first box he opened has a card number 50, and the probability that all 100 prisoners find their own card, under different strategies.
-#strategy1
-Pone(50,50,1,10000)
-Pall(50,1,10000)
-#strategy2
-Pone(50,50,2,10000)
-Pall(50,2,10000)
-#strategy3
-Pone(50,50,3,10000)
-Pall(50,3,10000)
+
 #question4-some interesting finds
 #according to our example in question 3, we find that in both functions Pone and Pall, the probability relationship of different strategies is P(strategy1) > P(strategy2) > P(strategy3)
 #for a single prisoner, the larger n is, the greater the probility that he can find the corresponding number.
@@ -406,27 +386,7 @@ Pall <- function(n, strategy, nreps){
   return(prob)
 }
 
-#question3-
-#While n=5,the probability that a prisoner finds his own card when the first box he opened has a card number 2, and the probability that all 10 prisoners find their own card, under different strategies.
-#strategy1
-Pone(5,2,1,10000)
-Pall(5,1,10000)
-#strategy2
-Pone(5,2,2,10000)
-Pall(5,2,10000)
-#strategy3
-Pone(5,2,3,10000)
-Pall(5,3,10000)
-#while n=50,the probability that a prisoner finds his own card when the first box he opened has a card number 50, and the probability that all 100 prisoners find their own card, under different strategies.
-#strategy1
-Pone(50,50,1,10000)
-Pall(50,1,10000)
-#strategy2
-Pone(50,50,2,10000)
-Pall(50,2,10000)
-#strategy3
-Pone(50,50,3,10000)
-Pall(50,3,10000)
+
 
 success_prob <- function(n,nerps){
   for (strategy in 1:3){
