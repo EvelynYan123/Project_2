@@ -321,22 +321,22 @@ barplot(prob,ylab = 'probability',xlab = 'loop length',col = 'blue',main = 'prob
         2n occurring at least once') #displaying histogram of probabilities
 
 
-Pall <- function(n, strategy, nreps){# this one decreases the running time, but not so much:(
-  N <- 2*n
-  results = rep(0,nreps)
-  if(strategy != 3){
-    for(i in 1:nreps) {
-      boxes = sample(1:N,N)
-      prisoners = 1:N
-      foundIt = 0
-      for(prisoner in prisoners) {
+Pall <- function(n, strategy, nreps){# #A function to calculate the individual probability of a prisoner finding his number given number of tries, the prisoner number,the strategy and number of iterations
+  N <- 2*n 
+  results = rep(0,nreps)  #initialise vector of results
+  if(strategy != 3){  #for strategies except strategy 3 (that is, 1 and 2)
+    for(i in 1:nreps) {  #loop over nreps
+      boxes = sample(1:N,N) #sample boxes
+      prisoners = 1:N  #we have 2*n prisoners
+      foundIt = 0 #initialise number of prisoners who found their numbers
+      for(prisoner in prisoners) { #loop over prisoners
         tries = 1
-        if(strategy == 1){
-          path = c(prisoner)
-          inBox = boxes[prisoner]
-        }else if(strategy == 2){
-          path = c(sample(1:N,1))
-          inBox = boxes[path]
+        if(strategy == 1){  #consider a strategy 1
+          path = c(prisoner) #keep track of the path of a prisoner
+          inBox = boxes[prisoner] # prisoner opens a box with his number
+        }else if(strategy == 2){ #consider a strategy 2
+          path = c(sample(1:N,1)) #sample random box  
+          inBox = boxes[path]  
         }
         
         while(tries < n) { 
