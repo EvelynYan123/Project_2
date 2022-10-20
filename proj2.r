@@ -117,27 +117,10 @@ success_prob <- function(n,nreps){
     cat(" P(all prisoners' success)=", {Pall(n,strategy,nreps)},fill = TRUE)
   }
 }
-success_prob(5,10000)# In case of n=5, we have:
-#In strategy 1 :
-# P(a single prisoner's success)= 0.4923
-# P(all prisoners' success)= 0.3534
-#In strategy 2 :
-# P(a single prisoner's success)= 0.4056
-# P(all prisoners' success)= 3e-04
-#In strategy 3 :
-# P(a single prisoner's success)= 1e-04
-# P(all prisoners' success)= 0.0014
+success_prob(5,10000)
+success_prob(50,10000)
 
-success_prob(50,10000)# In case of n=50, we have:
-#In strategy 1 :
-# P(a single prisoner's success)= 0.4995
-# P(all prisoners' success)= 0.3089
-#In strategy 2 :
-# P(a single prisoner's success)= 0.3719
-# P(all prisoners' success)= 0
-#In strategy 3 :
-# P(a single prisoner's success)= 1e-04
-# P(all prisoners' success)= 0
+
 
 # Question 4
 # In case of n=50, in strategy 1, the probability of all prisoners getting free is roughly 31%, but in other two strategies, the probabilities that they will be free are 0.
