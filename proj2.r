@@ -1,5 +1,13 @@
+
 #Aysu Ismayilova (s2295782)
 #Xiaoxian Zhang (s2287323)
+#Xiaolin Yan (s2326461)
+
+# the link:
+
+# Contributions: each of us contributed 1/3 of the job.
+
+
 Pone <- function(n,k,strategy, nreps){ #A function to calculate the probability that one prisoner finds his number 
   #given n- number of tries(max number of boxes he can open), k-prisoner's number, the strategy and number of iterations
   N <- 2*n 
