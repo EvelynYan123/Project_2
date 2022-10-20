@@ -1,4 +1,6 @@
-
+#names and university user names:Xiaoxian Zhang(s2287323)
+#the address of your github repo, which should be made public after the hand in deadline
+#a brief description of what each team member contributed to theproject, and roughly what proportion of the work was undertaken by each team member
 
 
 #running time check
@@ -117,8 +119,8 @@ success_prob <- function(n,nerps){
 
 success_prob(5,10000)
 success_prob(50,10000)
-# In strategy 1, the probability of all prisoners get free is 30.63%, but in other two strategies, the probabilities that they will be free are 0.
-
+# In strategy 1, when we have 100 prisoners,the probability of all prisoners get free is around 31.02%, but in other two strategies, the probabilities that they will be free are 0.
+#
 
 
 # Question 5 
