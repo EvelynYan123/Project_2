@@ -365,3 +365,32 @@ barplot(prob,ylab = 'probability',xlab = 'loop length',col = 'blue',main = 'prob
 
 1-sum(prob[51:100])
 
+
+
+
+
+
+
+
+# check
+# strategy 3----------------
+iters = 10
+results = rep(0,iters)
+
+k <- 1
+n <- 5
+N <- 2*n
+
+
+for(i in 1:iters) {
+  prisoners <- 1:N
+  temp <- numeric(N)
+  
+  for(j in prisoners){
+    inboxes <- sample(1:N,N)[1:n]
+    temp[j] <- match(j,inboxes)
+  }
+  temp <- na.omit(temp)
+  results[i] <- N-length(attributes(temp)$na.action)
+}
+
