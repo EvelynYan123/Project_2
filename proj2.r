@@ -36,9 +36,11 @@ Pone <- function(n,k,strategy, nreps){ #A function to calculate the probability 
     }
   }else{ #strategy3
     for(i in 1:nreps) {
-      inboxes <- sample(1:N,N)[1:n]
-      results[i] <- match(k,inboxes)
-      results <- length(results[which(is.na(results)== FALSE)])
+      inboxes <- sample(1:N,N)[1:n]  # we randomly choose 50 boxes with 50 cards in them
+      results[i] <- match(k,inboxes) #check if the prisoner finds his number and repeat it nrep number of times and store each result in results[i]
+                                     #if a prisoner finds his number it will be an integer, otherwise NA 
+      results <- length(results[which(is.na(results)== FALSE)])#we count how many results are integers. In other words in nreps times of simulation how many times the 
+                                                               #a prisoner with number k found his number
     }       
   }
   
@@ -85,14 +87,16 @@ Pall <- function(n, strategy, nreps){#A function to calculate the probability of
   }else{
     for(i in 1:nreps) {#loop over iterations
       prisoners <- 1:N #we have N prisoners
-      temp <- numeric(N)
+      temp <- numeric(N)#temporary
       
       for(j in prisoners){
-        inboxes <- sample(1:N,N)[1:n]
-        temp[j] <- match(j,inboxes)
+        inboxes <- sample(1:N,N)[1:n]#we randomly choose 50 boxes with 50 cards in them
+        temp[j] <- match(j,inboxes)#check if the jth prisoner finds his number and repeat it nreps times and store the result in temp
+                                   #if the prisoner finds his number temp[j] will be an integer otherwise NA 
       }
-      temp <- na.omit(temp)
-      results[i] <- N-length(attributes(temp)$na.action)
+      temp <- na.omit(temp) #drop all NA's 
+      results[i] <- N-length(attributes(temp)$na.action) #N indicates the number of prisoners who did not find their number
+                                                         #results shows how many prisoners found their numbers in ith simulation 
     }
     
     
