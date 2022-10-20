@@ -31,10 +31,10 @@ Pone <- function(n,k,strategy, nreps){ #A function to calculate the probability 
     }
   }else{ #strategy3
     for(i in 1:nreps) {
-      inboxes <- sample(1:N,N)[1:n]  # we randomly choose 50 boxes with 50 cards in them
+      inboxes <- sample(1:N,N)[1:n]  # we randomly choose n boxes with n cards in them
       results[i] <- match(k,inboxes) #check if the prisoner finds his number and repeat it nrep number of times and store each result in results[i]
                                      #if a prisoner finds his number it will be an integer, otherwise NA 
-      results <- length(results[which(is.na(results)== FALSE)])#we count how many results are integers. In other words in nreps times of simulation how many times the 
+      results <- length(results[which(is.na(results)== FALSE)])#we count how many results are integers. In other words in nreps times of simulation how many times  
                                                                #a prisoner with number k found his number
     }       
   }
@@ -85,7 +85,7 @@ Pall <- function(n, strategy, nreps){#A function to calculate the probability of
       temp <- numeric(N)#temporary
       
       for(j in prisoners){
-        inboxes <- sample(1:N,N)[1:n]#we randomly choose 50 boxes with 50 cards in them
+        inboxes <- sample(1:N,N)[1:n]#we randomly choose n boxes with n cards in them
         temp[j] <- match(j,inboxes)#check if the jth prisoner finds his number and repeat it nreps times and store the result in temp
                                    #if the prisoner finds his number temp[j] will be an integer otherwise NA 
       }
