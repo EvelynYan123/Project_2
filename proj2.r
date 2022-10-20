@@ -337,26 +337,26 @@ Pall <- function(n, strategy, nreps){# #A function to calculate the individual p
           inBox = boxes[prisoner] # prisoner opens a box with his number
         }else if(strategy == 2){ #consider a strategy 2
           path = c(sample(1:N,1)) #sample random box  
-          inBox = boxes[path]  
+          inBox = boxes[path]  #firstly prisoner opens a random box
         }
         
-        while(tries < n) { 
-          path = c(path, inBox) 			 			
-          if(inBox == prisoner) { 				
-            foundIt = foundIt + 1 				
+        while(tries <=n) { #prisoners can open at most 50 boxes
+          path = c(path, inBox) 		#keep track of a path	 			
+          if(inBox == prisoner) { 	#check if the number inside of the box coincides with the prisoner's number		
+            foundIt = foundIt + 1   #if yes then update foundIt
             break; 			} 
           else { 					
-            inBox = boxes[inBox] 			} 			
-          tries = tries+1 		} 		 		
+            inBox = boxes[inBox] 			} #if no, then follow this number in the next box
+          tries = tries+1 		} 		 		#update number of tries
       }
       
       
-      results[i] = foundIt
+      results[i] = foundIt  #how many prisoners found their numbers
     }
-  }else{
-    for(i in 1:nreps) {
-      boxes = sample(1:N,N)
-      prisoners = 1:N
+  }else{ #strategy3
+    for(i in 1:nreps) { #loop over number of iterations
+      boxes = sample(1:N,N) # sample boxes
+      prisoners = 1:N #we have 2*n prisoners
       foundIt = 0
       for(prisoner in prisoners) {
         path = c(sample(1:N,n))
