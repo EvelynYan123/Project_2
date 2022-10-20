@@ -139,7 +139,6 @@ success_prob(50,10000)# In case of n=50, we have:
 # P(all prisoners' success)= 0
 
 # In case of n=50, in strategy 1, the probability of all prisoners getting free is roughly 31%, but in other two strategies, the probabilities that they will be free are 0.
-# Individual probabilities in strategy 1 and 2 are much higher than in 3.
 # The probabilities of strategy 3 are almost 0 for all conditions.
 
 
