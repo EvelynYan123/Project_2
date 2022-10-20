@@ -1,10 +1,5 @@
 
 
-
-
-
-# Question 1
-
 Pone <- function(n,k,strategy, nreps){ #A function to calculate the probability that one prisoner finds his number 
   #given n- number of tries(max number of boxes he can open), k-prisoner's number, the strategy and number of iterations
   N <- 2*n 
@@ -50,7 +45,7 @@ Pone <- function(n,k,strategy, nreps){ #A function to calculate the probability 
 }
 
 
-# Question 2
+
 
 Pall <- function(n, strategy, nreps){#A function to calculate the probability of all prisoners finding their numbers given #given n -number of tries(max of boxes they can open), the strategy and number of iterations
   N <- 2*n #number of prsioners
@@ -122,7 +117,6 @@ success_prob(50,10000)
 
 
 
-# Question 6 
 
 dloop <- function(n, nreps){ #creating the function dloop that takes number of boxes and number of iterations
   count_0 = rep(0, n*2) # initialise vector of length 2*n
