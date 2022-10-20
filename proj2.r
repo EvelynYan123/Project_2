@@ -131,12 +131,6 @@ Pall <- function(n, strategy, nreps){
 }
 
 
-#question4-some interesting finds
-#according to our example in question 3, we find that in both functions Pone and Pall, the probability relationship of different strategies is P(strategy1) > P(strategy2) > P(strategy3)
-#for a single prisoner, the larger n is, the greater the probility that he can find the corresponding number.
-#The larger n is , the greater the probality that all 2*n prisoners can succeed in finding their number.
-
-
 
 set.seed(1)
 Pone <- function(n, k, strategy, nreps){  #A function to calculate the individual probability of a prisoner finding his number given number of tries, the prisoner number,the strategy and number of iterations
@@ -271,7 +265,56 @@ Pall <- function(n, strategy, nreps){
   return(prob)
 }
 
-
+Pall <- function(n, strategy, nreps){ #A function to calculate the probability that all prisoners find their numbers 
+                                      #given number of tries, the strategy and number of iterations
+  N <- 2*n 
+  results = rep(0,nreps)  #initialise vector of results
+  if(strategy != 3){  #for strategies except strategy 3 (that is, 1 and 2)
+    for(i in 1:nreps) {  #loop over nreps
+      boxes = sample(1:N,N) #sample boxes
+      prisoners = 1:N  #we have 2*n prisoners
+      foundIt = 0 #initialise number of prisoners who found their numbers
+      for(prisoner in prisoners) { #loop over prisoners
+        tries = 1
+        if(strategy == 1){  #consider a strategy 1
+          path = c(prisoner) #keep track of the path of a prisoner
+          inBox = boxes[prisoner] # prisoner opens a box with his number
+        }else if(strategy == 2){ #consider a strategy 2
+          path = c(sample(1:N,1)) #sample random box  
+          inBox = boxes[path]  #firstly prisoner opens a random box
+        }
+        while(tries <=n) { #prisoners can open at most 50 boxes
+          path = c(path, inBox) 		#keep track of a path	 			
+          if(inBox == prisoner) { 	#check if the number inside of the box coincides with the prisoner's number		
+            foundIt = foundIt + 1   #if yes then update foundIt
+            break; 			} 
+          else { 					
+            inBox = boxes[inBox] 			} #if no, then follow this number in the next box
+          tries = tries+1 		} 		 		#update number of tries
+      }
+      results[i] = foundIt  #how many prisoners found their numbers
+    }
+  }else{ #strategy3
+    for(i in 1:nreps) { #loop over number of iterations
+      boxes = sample(1:N,N) # sample boxes
+      prisoners = 1:N #we have 2*n prisoners
+      foundIt = 0
+      for(prisoner in prisoners) {
+        path = c(sample(1:N,n))
+        tries = 1
+        inbox = boxes[path]
+        for(i in  1:n){
+          if(inbox[i] == prisoner){
+            foundIt = foundIt+1
+          }
+        }
+      }
+      results[i] = foundIt
+    }  
+  }
+  prob = length(which(results==2*n))/nreps
+  return(prob)
+}
 
 success_prob <- function(n,nerps){
   for (strategy in 1:3){
@@ -321,63 +364,4 @@ barplot(prob,ylab = 'probability',xlab = 'loop length',col = 'blue',main = 'prob
         2n occurring at least once') #displaying histogram of probabilities
 
 1-sum(prob[51:100])
-
-Pall <- function(n, strategy, nreps){# #A function to calculate the individual probability of a prisoner finding his number given number of tries, the prisoner number,the strategy and number of iterations
-  N <- 2*n 
-  results = rep(0,nreps)  #initialise vector of results
-  if(strategy != 3){  #for strategies except strategy 3 (that is, 1 and 2)
-    for(i in 1:nreps) {  #loop over nreps
-      boxes = sample(1:N,N) #sample boxes
-      prisoners = 1:N  #we have 2*n prisoners
-      foundIt = 0 #initialise number of prisoners who found their numbers
-      for(prisoner in prisoners) { #loop over prisoners
-        tries = 1
-        if(strategy == 1){  #consider a strategy 1
-          path = c(prisoner) #keep track of the path of a prisoner
-          inBox = boxes[prisoner] # prisoner opens a box with his number
-        }else if(strategy == 2){ #consider a strategy 2
-          path = c(sample(1:N,1)) #sample random box  
-          inBox = boxes[path]  #firstly prisoner opens a random box
-        }
-        
-        while(tries <=n) { #prisoners can open at most 50 boxes
-          path = c(path, inBox) 		#keep track of a path	 			
-          if(inBox == prisoner) { 	#check if the number inside of the box coincides with the prisoner's number		
-            foundIt = foundIt + 1   #if yes then update foundIt
-            break; 			} 
-          else { 					
-            inBox = boxes[inBox] 			} #if no, then follow this number in the next box
-          tries = tries+1 		} 		 		#update number of tries
-      }
-      
-      
-      results[i] = foundIt  #how many prisoners found their numbers
-    }
-  }else{ #strategy3
-    for(i in 1:nreps) { #loop over number of iterations
-      boxes = sample(1:N,N) # sample boxes
-      prisoners = 1:N #we have 2*n prisoners
-      foundIt = 0
-      for(prisoner in prisoners) {
-        path = c(sample(1:N,n))
-        tries = 1
-        inbox = boxes[path]
-        for(i in  1:n){
-          if(inbox[i] == prisoner){
-            foundIt = foundIt+1
-          }
-        }
-      }
-      results[i] = foundIt
-      
-    }
-    
-  }
-  
-  prob = length(which(results==2*n))/nreps
-  
-  return(prob)
-}
-
-
 
