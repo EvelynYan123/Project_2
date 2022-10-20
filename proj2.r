@@ -1,11 +1,9 @@
 
-#Aysu Ismayilova (s2295782)
-#Xiaoxian Zhang (s2287323)
-#Xiaolin Yan (s2326461)
-
+#Aysu Ismayilova (s2295782)；Xiaoxian Zhang (s2287323)；Xiaolin Yan (s2326461)
 # the link: https://github.com/EvelynYan123/Project_2.git
 # Contributions: each of us contributed 1/3 of the job.
 
+start <- Sys.time()#check running time
 
 Pone <- function(n,k,strategy, nreps){ #A function to calculate the probability that one prisoner finds his number 
   #given n- number of tries(max number of boxes he can open), k-prisoner's number, the strategy and number of iterations
@@ -191,6 +189,10 @@ barplot(prob,ylab = 'probability',xlab = 'loop length',col = 'blue',main = 'prob
 #In fact, the maximum cycle length should be less than or equal to 50, and there can only be one cycle in any set that has a cycle greater than fifty and 
 #after calculating the probability we get 0.319
 # about 30 percent of the time, the length of the maximum chains formed will be less than 50 boxes and so all prisoners will be able to find their numbers before they open more than 50 boxes
+
+end <- Sys.time()
+runningtime <- end - start #running time of our whole code
+cat(runningtime)
 
 
 
