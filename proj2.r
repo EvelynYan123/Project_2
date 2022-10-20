@@ -80,7 +80,15 @@ Pall(5,3,1000)
 }
 
 
-
+success_prob <- function(n,nerps){
+  for (strategy in 1:3){
+    cat('In strategy', strategy,':',fill = TRUE)
+    cat(' P(a single prisoner success)=', {Pone(n,1,strategy,nerps)},fill = TRUE)
+    cat(' P(all prisoner success)=', {Pall(n,strategy,nerps)},fill = TRUE)
+  }
+}
+success_prob(5,10000)
+success_prob(50,10000)
 
 
 
