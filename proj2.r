@@ -118,7 +118,7 @@ success_prob(5,10000)
 success_prob(50,10000)
 
 
-
+# What is surprising about the results?
 # In case of n=50, in strategy 1, the probability of all prisoners getting free is roughly 31%, but in other two strategies, the probabilities that they will be free are 0.
 # The probabilities of strategy 3 are almost 0 for all conditions.
 # In case of smaller n, we have a lower probability when using strategy 2 than that of strategy 3 for all prisoners finding their numbers. 
