@@ -108,8 +108,8 @@ Pall <- function(n, strategy, nreps){#A function to calculate the probability of
 success_prob <- function(n,nreps){ 
   for (strategy in 1:3){ #loop over the strategies
     cat('In strategy', strategy,':',fill = TRUE)
-    cat(" P(a single prisoner' success)=", {Pone(n,1,strategy,nreps)},fill = TRUE)
-    cat(" P(all prisoner's success)=", {Pall(n,strategy,nreps)},fill = TRUE)
+    cat(" P(a single prisoner's success)=", {Pone(n,1,strategy,nreps)},fill = TRUE)
+    cat(" P(all prisoners' success)=", {Pall(n,strategy,nreps)},fill = TRUE)
   }
 }
 success_prob(5,10000)
