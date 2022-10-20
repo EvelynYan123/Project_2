@@ -444,7 +444,7 @@ barplot(prob,ylab = 'probability',xlab = 'loop length',col = 'blue',main = 'prob
 
 
 
-Pall <- function(n, k, strategy, nreps){
+Pall <- function(n, k, strategy, nreps){ # this function is faster than the old version:)
   N <- 2*n
   results = rep(0,nreps)
   if(strategy != 3){
