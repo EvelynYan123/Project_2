@@ -440,7 +440,62 @@ barplot(prob,ylab = 'probability',xlab = 'loop length',col = 'blue',main = 'prob
         2n occurring at least once') #visualise the probabilities sensibly
 
 
-
+Pall <- function(n, k, strategy, nreps){# this one decreases the running time, but not so much:(
+  N <- 2*n
+  results = rep(0,nreps)
+  if(strategy != 3){
+    for(i in 1:nreps) {
+      boxes = sample(1:N,N)
+      prisoners = 1:N
+      foundIt = 0
+      for(prisoner in prisoners) {
+        tries = 1
+        if(strategy == 1){
+          path = c(prisoner)
+          inBox = boxes[prisoner]
+        }else if(strategy == 2){
+          path = c(sample(1:N,1))
+          inBox = boxes[path]
+        }
+        
+        while(tries < n) { 
+          path = c(path, inBox) 			 			
+          if(inBox == prisoner) { 				
+            foundIt = foundIt + 1 				
+            break; 			} 
+          else { 					
+            inBox = boxes[inBox] 			} 			
+          tries = tries+1 		} 		 		
+      }
+      
+      
+      results[i] = foundIt
+    }
+  }else{
+    for(i in 1:nreps) {
+      boxes = sample(1:N,N)
+      prisoners = 1:N
+      foundIt = 0
+      for(prisoner in prisoners) {
+        path = c(sample(1:N,n))
+        tries = 1
+        inbox = boxes[path]
+        for(i in  1:n){
+          if(inbox[i] == prisoner){
+            foundIt = foundIt+1
+          }
+        }
+      }
+      results[i] = foundIt
+      
+    }
+    
+  }
+  
+  prob = length(which(results==2*n))/nreps
+  
+  return(prob)
+}
 
 
 
