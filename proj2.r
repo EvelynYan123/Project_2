@@ -1,7 +1,8 @@
 
 
 
-
+#running time check
+start <- Sys.time()
 
 # Question 1
 
@@ -106,11 +107,6 @@ Pall <- function(n, strategy, nreps){
 
 # Question 3
 
-   ty of a single prisoner succeeding in finding their number
-  return(prob)
-}
-
-
 success_prob <- function(n,nerps){
   for (strategy in 1:3){
     cat('In strategy', strategy,':',fill = TRUE)
@@ -118,13 +114,14 @@ success_prob <- function(n,nerps){
     cat(' P(all prisoner success)=', {Pall(n,strategy,nerps)},fill = TRUE)
   }
 }
+
 success_prob(5,10000)
 success_prob(50,10000)
 # In strategy 1, the probability of all prisoners get free is 30.63%, but in other two strategies, the probabilities that they will be free are 0.
 
 
 
-# Question 6 
+# Question 5 
 
 dloop <- function(n, nreps){ #creating the function dloop that takes number of boxes and number of iterations
   count_0 = rep(0, n*2) # initialise vector of length 2*n
@@ -157,13 +154,17 @@ dloop <- function(n, nreps){ #creating the function dloop that takes number of b
   return(prob_1)
 }
 
+#question 6
 prob <- dloop(50, 10000) 
 barplot(prob,ylab = 'probability',xlab = 'loop length',col = 'blue',main = 'probability of each loop length from 1 to
         2n occurring at least once') #displaying histogram of probabilities
 
 1-sum(prob[51:100])
 
-
+# running time check
+end <- Sys.time()
+runningtime1 <- end - start
+cat(runningtime)
 
 
 
